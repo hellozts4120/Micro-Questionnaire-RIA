@@ -1,0 +1,10 @@
+body {
+    width: 100%;
+    height: auto;
+    background: grey;
+}
+
+#form-container {
+    margin: 0 auto;
+    padding-top: 200px;
+}

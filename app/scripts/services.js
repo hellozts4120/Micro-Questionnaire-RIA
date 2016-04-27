@@ -9,41 +9,41 @@ angular.module('questionnaireApp')
                         _id:0,
                         name:'问卷调查1',
                         status: "onboard",
-                        date:"2016-04-12T17:57:28.556094Z"
+                        date:"2016-04-12 17:57:28",
                         questions: [
                             {
                                 type: 1,
                                 title: "问题1",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 2,
                                 title: "问题2",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 3,
                                 title: "问题3",
                                 textView: "",
-                                isSortable = false;
+                                isSortable: false
                             },
                             
                             {
                                 type: 1,
                                 title: "问题4",
                                 chose: ["选项1", "选项2"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 2,
                                 title: "问题5",
                                 chose: ["选项1", "选项2", "选项3"],
-                                isSortable = true;
+                                isSortable: true
                             }
                            
                         ]
@@ -53,41 +53,41 @@ angular.module('questionnaireApp')
                         _id: 1,
                         name:'问卷调查2',
                         status: "offboard",
-                        date:"2016-04-10T17:57:28.556094Z"
+                        date:"2016-04-10 17:57:28",
                         questions: [
                             {
                                 type: 1,
                                 title: "问题1",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 2,
                                 title: "问题2",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 3,
                                 title: "问题3",
                                 textView: "",
-                                isSortable = false;
+                                isSortable: false
                             },
                             
                             {
                                 type: 1,
                                 title: "问题4",
                                 chose: ["选项1", "选项2"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 2,
                                 title: "问题5",
                                 chose: ["选项1", "选项2", "选项3"],
-                                isSortable = true;
+                                isSortable: true
                             }
                            
                         ]
@@ -97,47 +97,47 @@ angular.module('questionnaireApp')
                         _id: 2,
                         name:'问卷调查3',
                         status: "ended",
-                        date:"2016-03-12T17:57:28.556094Z"
+                        date:"2016-03-12 17:57:28",
                         questions: [
                             {
                                 type: 1,
                                 title: "问题1",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 2,
                                 title: "问题2",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 3,
                                 title: "问题3",
                                 textView: "",
-                                isSortable = false;
+                                isSortable: false
                             },
                             
                             {
                                 type: 1,
                                 title: "问题4",
                                 chose: ["选项1", "选项2"],
-                                isSortable = true;
+                                isSortable: true
                             },
                             
                             {
                                 type: 2,
                                 title: "问题5",
                                 chose: ["选项1", "选项2", "选项3"],
-                                isSortable = true;
+                                isSortable: true
                             }
                            
                         ]
                     }
-                ];
     ];
+
 
     this.getForms = function(){
         
