@@ -8,3 +8,11 @@ body {
     margin: 0 auto;
     padding-top: 200px;
 }
+
+#header-nav {
+    background: orange;
+}
+
+.pink {
+    background: pink;
+}
