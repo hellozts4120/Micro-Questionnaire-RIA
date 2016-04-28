@@ -28,7 +28,7 @@ angular.module('questionnaireApp')
                             {
                                 type: 3,
                                 title: "问题3",
-                                textView: "",
+                                isMustAnswer: true,
                                 isSortable: false
                             },
                             
@@ -72,7 +72,7 @@ angular.module('questionnaireApp')
                             {
                                 type: 3,
                                 title: "问题3",
-                                textView: "",
+                                isMustAnswer: true,
                                 isSortable: false
                             },
                             
@@ -116,7 +116,7 @@ angular.module('questionnaireApp')
                             {
                                 type: 3,
                                 title: "问题3",
-                                textView: "",
+                                isMustAnswer: true,
                                 isSortable: false
                             },
                             

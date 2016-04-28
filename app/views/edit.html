@@ -15,7 +15,11 @@
                             <input type="checkbox" ng-show="question.type == 2">
                             {{option}}
                         </div>
-                        <textarea ng-show="question.type == 3"></textarea>
+                        
+                        <div class="select-options" ng-show="question.type == 3">
+                            <textarea ng-show="question.type == 3"></textarea>
+                            <input type="checkbox" name="question.title" ng-show="question.type == 3" ng-checked="question.isMustAnswer">此题是否必填
+                        </div>    
                         
                         <div class="question-operation" ng-show="isHover">
                             <span class="operation" ng-click="moveUpQuestion(question)">上移</span>
@@ -39,4 +43,24 @@
         </div>
         <button class="btn btn-default">保存问卷</button>
         <button class="btn btn-warning">发布问卷</button>
+        
+        <div class="modal" id="modal-cannot-edit" ng-show="modalShow">
+            <div class="overlay-mask" id="overlay-mask-1" ui-sref="app"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span aria-hidden="true" ui-sref="app">&times;</span></button>
+                        <h4 class="modal-title">错误</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>问卷已{{form.status == "ended" ? "结束" : "发布"}}，不能再编辑了！</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger modal-func" ui-sref="app">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>

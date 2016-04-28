@@ -26,10 +26,13 @@ angular.module('questionnaireApp')
             else {
                 $scope.form = formFactory.getIdForm(parseInt($stateParams.id, 10));
             }
+            
+            if ($scope.form.status != "offboard") $scope.modalShow = true;
         }
         
         $scope.addOneSelect = function() {
-            $scope.form.questions.push({
+            if ($scope.form.questions.length == 10) alert("不能超过十个问题！");
+            else $scope.form.questions.push({
                                 type: 1,
                                 title: "单选题",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
@@ -38,7 +41,8 @@ angular.module('questionnaireApp')
         }
         
         $scope.addMutiSelect = function() {
-            $scope.form.questions.push({
+            if ($scope.form.questions.length == 10) alert("不能超过十个问题！");
+            else $scope.form.questions.push({
                                 type: 2,
                                 title: "多选题",
                                 chose: ["选项1", "选项2", "选项3", "选项4"],
@@ -47,10 +51,11 @@ angular.module('questionnaireApp')
         }
         
         $scope.addTextSelect = function() {
-            $scope.form.questions.push({
+            if ($scope.form.questions.length == 10) alert("不能超过十个问题！");
+            else $scope.form.questions.push({
                                 type: 3,
                                 title: "文本题",
-                                textView: "",
+                                isMustAnswer: false,
                                 isSortable: false
                             });
         }
@@ -80,12 +85,20 @@ angular.module('questionnaireApp')
         }
         
         $scope.reuseQuestion = function(obj) {
+            if ($scope.form.questions.length == 10) {
+                alert("不能超过十个问题！");
+                return;
+            }
             var index = $scope.form.questions.indexOf(obj);
             var temp = obj;
             $scope.form.questions.splice(index + 1, 0, temp);
         }
         
         $scope.deleteQuestion = function(obj) {
+            if ($scope.form.questions.length == 1) {
+                alert("至少要有一个问题！");
+                return;
+            }
             var index = $scope.form.questions.indexOf(obj);
             $scope.form.questions.splice(index, 1);
         }
@@ -123,17 +136,7 @@ angular.module('questionnaireApp')
     }])
     
     .controller('ViewController', ['$scope', '$stateParams', 'formFactory', function($scope, $stateParams, formFactory) {
-        $scope.isNew = false;
-        $scope.form = "";
-        
-        $scope.init = function() {
-            if ($stateParams.id == "") {
-                $scope.isNew = true;
-            }
-            else {
-                $scope.form = formFactory.getIdForm(parseInt($stateParams.id, 10));
-            }
-        }
+        $scope.form = formFactory.getIdForm(parseInt($stateParams.id, 10));
     }])
 
 ;

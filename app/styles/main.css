@@ -210,3 +210,19 @@ body {
 #question-container {
     width: 100%;
 }
+
+/*  CSS for view page */
+
+#view-wrapper {
+    width: 80%;
+    height: auto;
+    margin: 50px auto;
+    background: white;
+}
+
+#view-container {
+    width: 80%;
+    height: auto;
+    margin: 20px auto;
+    border: 2px solid black;
+}
