@@ -24,7 +24,7 @@ angular.module('questionnaireApp', ['ui.router'])
         
             // route for the data page
             .state('app.data', {
-                url:'data',
+                url:'data/:id',
                 views: {
                     'content@': {
                         templateUrl : 'views/data.html',
@@ -32,10 +32,21 @@ angular.module('questionnaireApp', ['ui.router'])
                     }
                 }
             })
+            
+            // route for the data page
+            .state('app.view', {
+                url:'view/:id',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/view.html',
+                        controller  : 'ViewController'                  
+                    }
+                }
+            })
         
             // route for the edit page
             .state('app.edit', {
-                url:'edit',
+                url:'edit/:id',
                 views: {
                     'content@': {
                         templateUrl : 'views/edit.html',

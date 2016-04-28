@@ -12,17 +12,23 @@
                 </th>
             </thead>
             
-            <tbody ng-repeat="form in forms">
-                <tr ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false">
-                    <td><input type="radio" id="radio"+{{form["_id"]}}></td>
+            <tbody>
+                <tr ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="form in forms">
+                    <td><input type="radio" id='radio{{form["_id"]}}'></td>
                     <td>{{form["name"]}}</td>
                     <td>{{form["date"]}}</td>
                     <td ng-bind-html="statusHTML[form['status']]|trust2Html"></td>
                     <td>
-                        <button type="button" class="btn btn-default" ng-click="click($event)" id='button-1-{{form["_id"]}}'>编辑</button>
+                        <button type="button" class="btn btn-default" ui-sref="app.edit({id: form._id})" id='button-1-{{form["_id"]}}'>编辑</button>
                         <button type="button" class="btn btn-default" ng-click="click($event)" id='button-2-{{form["_id"]}}'>删除</button>'
-                        <button type="button" class="btn btn-default" ng-click="click($event)" id='button-3-{{form["_id"]}}'>{{text[form["status"]]}}</button>
+                        <button type="button" class="btn btn-default" ui-sref="app.{{jump[form['status']]}}({id: form._id})" id='button-3-{{form["_id"]}}'>{{text[form["status"]]}}</button>
                     <td>
+                </tr>
+                    
+                <tr>
+                    <input type="radio" id="select-all">
+                    <p>全选</p>
+                    <button type="button" class="btn btn-default" ng-click="click($event)" id='delete-all-button'>删除</button>
                 </tr>
             </tbody>
             
