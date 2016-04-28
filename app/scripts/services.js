@@ -182,4 +182,116 @@ angular.module('questionnaireApp')
     
 })
 
-;
+.service('feedbackFactory', function() {
+    var feedbacks = [
+                    {
+                        _id:0,
+                        feedback: [
+                            {
+                                type: 1,
+                                portion: [0.32, 0.28, 0.30, 0.10]
+                            },
+                            
+                            {
+                                type: 2,
+                                portion: [0.14, 0.60, 0.06, 0.20]
+                            },
+                            
+                            {
+                                type: 3,
+                                useful: 0.66
+                            },
+                            
+                            {
+                                type: 1,
+                                portion: [0.62, 0.38]
+                            },
+                            
+                            {
+                                type: 2,
+                                portion: [0.24, 0.56, 0.20]
+                            }
+                           
+                        ]
+                    },
+                    
+                    {
+                        _id:1,
+                        feedback: [
+                            {
+                                type: 1,
+                                portion: [0.28, 0.32, 0.10, 0.30]
+                            },
+                            
+                            {
+                                type: 2,
+                                portion: [0.24, 0.50, 0.20, 0.06]
+                            },
+                            
+                            {
+                                type: 3,
+                                useful: 0.36
+                            },
+                            
+                            {
+                                type: 1,
+                                portion: [0.72, 0.28]
+                            },
+                            
+                            {
+                                type: 2,
+                                portion: [0.14, 0.60, 0.26]
+                            }
+                           
+                        ]
+                    },
+                    
+                    {
+                        _id:2,
+                        feedback: [
+                            {
+                                type: 1,
+                                portion: [0.10, 0.32, 0.28, 0.30]
+                            },
+                            
+                            {
+                                type: 2,
+                                portion: [0.20, 0.50, 0.06, 0.24]
+                            },
+                            
+                            {
+                                type: 3,
+                                useful: 0.80
+                            },
+                            
+                            {
+                                type: 1,
+                                portion: [0.28, 0.72]
+                            },
+                            
+                            {
+                                type: 2,
+                                portion: [0.26, 0.60, 0.14]
+                            }
+                           
+                        ]
+                    }
+    ];
+    
+    this.getFeedbacks = function (id) {
+        
+        return feedbacks;
+
+    };
+        
+    this.getIdFeedback = function (id) {
+        
+        for (var i = 0; i < feedbacks.length; i++) {
+            if (feedbacks[i]["_id"] == id) {
+                return feedbacks[i];
+            }
+        }
+
+    };
+
+})

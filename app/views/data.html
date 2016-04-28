@@ -1,1 +1,34 @@
-<p>Data Here</p>
+
+    <div class="container" id="data-wrapper">
+        
+        <div>{{form.name}}</div>
+        <div class="container" id="data-container">
+            <div id="data-container-inside">
+                <div id="question-container">
+                    <div class="question" ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="question in form.questions track by $index">
+                        <div class="question-title">
+                            Q{{form.questions.indexOf(question) + 1}}&nbsp;&nbsp;{{question.title}}
+                        </div>
+                        
+                        <!-->
+                        <div class="select-options" ng-repeat="option in question.chose" ng-show="question.type == 1">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" ng-style="{width: {{feedback['portion'][question.chose.indexOf(option)] * 100}} + '%'}">
+                                    <div>{{feedback['portion'][question.chose.indexOf(option)] * 100}}% +</div>
+                                </div>
+                            </div>
+                        </div>
+                        <-->
+                        
+                        <div class="select-options" ng-show="question.type == 3">
+                            <textarea ng-show="question.type == 3"></textarea>
+                            此题{{question.isMustAnswer ? "必填" : "非必填"}}
+                        </div>  
+                        
+                    </div>
+                </div>   
+            </div> 
+        </div>
+        <button class="btn btn-default" ui-sref="app">返回上层</button>
+        <button class="btn btn-warning">提交问卷</button>
+    </div>

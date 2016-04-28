@@ -131,7 +131,11 @@ angular.module('questionnaireApp')
 
     }])
 
-    .controller('DataController', ['$scope', 'formFactory', function($scope, formFactory){
+    .controller('DataController', ['$scope', '$stateParams', 'formFactory', 'feedbackFactory', function($scope, $stateParams, formFactory, feedbackFactory){
+        $scope.form = formFactory.getIdForm(parseInt($stateParams.id, 10));
+        $scope.feedback = feedbackFactory.getIdFeedback(parseInt($stateParams.id, 10));
+        
+        //TO DO
         
     }])
     
