@@ -158,6 +158,28 @@ angular.module('questionnaireApp')
         return res;
     };
     
+    this.getIdForm = function (id) {
+        
+        for (var i = 0; i < forms.length; i++) {
+            if (forms[i]["_id"] == id) {
+                return forms[i];
+            }
+        }
+
+    };
+    
+    this.deleteSpecificForm = function (obj) {
+        
+        for (var i = 0; i < forms.length; i++) {
+            if (forms[i] === obj) {
+                forms.splice(i, 1);
+                break;
+            }
+        }
+
+    };
+
+    
 })
 
 ;

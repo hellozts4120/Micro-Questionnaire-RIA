@@ -20,7 +20,7 @@
                     <td ng-bind-html="statusHTML[form['status']]|trust2Html"></td>
                     <td>
                         <button type="button" class="btn btn-default" ui-sref="app.edit({id: form._id})" id='button-1-{{form["_id"]}}'>编辑</button>
-                        <button type="button" class="btn btn-default" ng-click="click($event)" id='button-2-{{form["_id"]}}'>删除</button>'
+                        <button type="button" class="btn btn-default" ng-click="clickDelete($event)" id='button-2-{{form["_id"]}}'>删除</button>'
                         <button type="button" class="btn btn-default" ui-sref="app.{{jump[form['status']]}}({id: form._id})" id='button-3-{{form["_id"]}}'>{{text[form["status"]]}}</button>
                     <td>
                 </tr>
@@ -28,7 +28,7 @@
                 <tr>
                     <input type="radio" id="select-all">
                     <p>全选</p>
-                    <button type="button" class="btn btn-default" ng-click="click($event)" id='delete-all-button'>删除</button>
+                    <button type="button" class="btn btn-default" ng-click="clickDelete($event)" id='delete-all-button'>删除</button>
                 </tr>
             </tbody>
             
@@ -36,4 +36,25 @@
         </table>
         
         <button type="button" class="btn btn-warning" ui-sref="app.edit" id="new-form" ng-hide="isShow">新建问卷</button>
+        
+        <div class="modal" id="modal" ng-show="modalShow">
+            <div class="overlay-mask" id="overlay-mask" ng-click="hideModal()"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span aria-hidden="true" ng-click="hideModal()">&times;</span></button>
+                        <h4 class="modal-title">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>确认要删除此问卷？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning modal-func" ng-click="deleteCheck()">确定</button>
+                        <button type="button" class="btn btn-default modal-cancel" ng-click="hideModal()">取消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
