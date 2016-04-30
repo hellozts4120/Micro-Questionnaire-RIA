@@ -20,7 +20,7 @@
                     <td ng-bind-html="statusHTML[form['status']]|trust2Html"></td>
                     <td>
                         <button type="button" class="btn btn-default" ui-sref="app.edit({id: form._id})" id='button-1-{{form["_id"]}}'>编辑</button>
-                        <button type="button" class="btn btn-default" ng-click="clickDelete($event)" id='button-2-{{form["_id"]}}'>删除</button>'
+                        <button type="button" class="btn btn-default" ng-click="clickDelete($event)" id='button-2-{{form["_id"]}}'>删除</button>
                         <button type="button" class="btn btn-default" ui-sref="app.{{jump[form['status']]}}({id: form._id})" id='button-3-{{form["_id"]}}'>{{text[form["status"]]}}</button>
                     <td>
                 </tr>
@@ -51,6 +51,26 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning modal-func" ng-click="deleteCheck()">确定</button>
                         <button type="button" class="btn btn-default modal-cancel" ng-click="hideModal()">取消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        
+        <div class="modal" id="modal-cannot-delete" ng-show="modal2Show">
+            <div class="overlay-mask" id="overlay-mask-1" ng-click="hideModal2()"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span aria-hidden="true" ng-click="hideModal2()">&times;</span></button>
+                        <h4 class="modal-title">错误</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>问卷非未发布状态，不能删除！</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger modal-func" ng-click="hideModal2()">确定</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->

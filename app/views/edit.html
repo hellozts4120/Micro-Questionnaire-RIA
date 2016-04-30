@@ -1,7 +1,7 @@
     
     <div class="container" id="edit-container" ng-init="init()">
     
-        <div contenteditable="true" id="form-title" title="点击编辑标题" ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false">{{form["name"]}}</div>
+        <input type="text" id="form-title" title="点击编辑标题" value="{{form.name}}" ng-model="form.name" ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false">
         <div class="container" id="add-container">
             <div id="add-container-inside">
                 <div id="question-container">
@@ -41,7 +41,7 @@
                 </div>    
             </div> 
         </div>
-        <button class="btn btn-default">保存问卷</button>
+        <button class="btn btn-default" ng-click="uploadForm()">保存问卷</button>
         <button class="btn btn-warning">发布问卷</button>
         
         <div class="modal" id="modal-cannot-edit" ng-show="modalShow">

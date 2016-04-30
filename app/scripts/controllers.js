@@ -103,6 +103,10 @@ angular.module('questionnaireApp')
             $scope.form.questions.splice(index, 1);
         }
         
+        $scope.uploadForm = function() {
+            console.log($scope.form.name);
+        }
+        
     }])
 
 
@@ -111,17 +115,25 @@ angular.module('questionnaireApp')
         $scope.isShow = formFactory.getForms().length > 0;
         $scope.modalShow = false;
         $scope.type = ["onboard", "offboard", "ended"];
-        $scope.statusHTML = {"onboard": "<p style='color: green'>发布中</p>", "offboard": "<p>未发布</p>", "ended": "<p>已结束</p>"};
+        $scope.statusHTML = {"onboard": "<p style='color: green'>发布中</p>", "offboard": "<p>未发布</p>", "ended": "<p style='color: red'>已结束</p>"};
         $scope.text = {"onboard": "查看数据", "offboard": "查看问卷", "ended": "查看数据"};
         $scope.jump = {"onboard": "data", "offboard": "view", "ended": "data"};
         
         $scope.clickDelete = function(e) {
-            $scope.modalShow = true;
-            $scope.deleteForm = formFactory.getIdForm(parseInt(e.target.id.split("-")[2]));
+            console.log(e.target);
+            if (formFactory.getIdForm(parseInt(e.target.id.split("-")[2])).status == "offboard") {
+                $scope.modalShow = true;
+                $scope.deleteForm = formFactory.getIdForm(parseInt(e.target.id.split("-")[2]));
+            }
+            else $scope.modal2Show = true;
         }
         
         $scope.hideModal = function() {
             $scope.modalShow = false;
+        }
+        
+        $scope.hideModal2 = function() {
+            $scope.modal2Show = false;
         }
         
         $scope.deleteCheck = function() {
@@ -135,7 +147,14 @@ angular.module('questionnaireApp')
         $scope.form = formFactory.getIdForm(parseInt($stateParams.id, 10));
         $scope.feedback = feedbackFactory.getIdFeedback(parseInt($stateParams.id, 10));
         
-        //TO DO
+        $scope.init = function() {
+            for (var i = 0; i < $scope.form.questions.length; i++) {
+                if ((($scope.form.questions)[i]).type == 3) {
+                    (($scope.form.questions)[i]).useful = (($scope.feedback.feedback)[i]).useful;
+                }
+                else (($scope.form.questions)[i]).portion = (($scope.feedback.feedback)[i]).portion;
+            }
+        }
         
     }])
     
