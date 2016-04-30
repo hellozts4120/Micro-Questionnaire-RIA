@@ -298,7 +298,7 @@ angular.module('questionnaireApp')
                         ]
                     }
         ];
-        localStorage.setItem('forms', JSON.stringify(Forms));
+        localStorage.setItem('feedbacks', JSON.stringify(Feedbacks));
     }
     else var Feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
     

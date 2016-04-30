@@ -104,12 +104,26 @@ angular.module('questionnaireApp')
         }
         
         $scope.uploadForm = function() {
+            var time1 = (new Date().toISOString().split("T"))[0];
+            var time2 = (((new Date().toISOString().split("T"))[1]).split("."))[0];
+            $scope.form.date = time1 + " " + time2;
             formFactory.uploadForm($scope.form);
             alert("保存问卷成功！");
         }
         
         $scope.postForm = function() {
-            // TO DO
+            $scope.endDate = $("#date-input").val();
+            var chose = $scope.endDate.split("-");
+            var time = new Date();
+            if (parseInt(chose[0]) < time.getFullYear() || (parseInt(chose[0]) == time.getFullYear() && parseInt(chose[1]) < time.getMonth() + 1) || (parseInt(chose[0]) == time.getFullYear() && parseInt(chose[1]) == time.getMonth() + 1 && parseInt(chose[2]) < time.getDate())) {
+                alert("选择的截止时间不得早于当前时间！");
+                return;
+            }
+            else {
+                $scope.form.status = "onboard";
+                formFactory.uploadForm($scope.form);
+                alert("发布问卷成功！");
+            }
         }
         
     }])
@@ -120,9 +134,23 @@ angular.module('questionnaireApp')
         $scope.isShow = formFactory.getForms().length > 0;
         $scope.modalShow = false;
         $scope.type = ["onboard", "offboard", "ended"];
-        $scope.statusHTML = {"onboard": "<p style='color: green'>发布中</p>", "offboard": "<p>未发布</p>", "ended": "<p style='color: red'>已结束</p>"};
+        $scope.statusHTML = {"onboard": "<p style='color: #40FF00'>发布中</p>", "offboard": "<p>未发布</p>", "ended": "<p style='color: red'>已结束</p>"};
         $scope.text = {"onboard": "查看数据", "offboard": "查看问卷", "ended": "查看数据"};
         $scope.jump = {"onboard": "data", "offboard": "view", "ended": "data"};
+        
+        
+        $scope.init = function() {
+            $scope.radio = {};
+            for (var i in $scope.forms) {
+                ($scope.radio)[$scope.forms[i]["_id"]] = false;
+            }
+        }
+        
+        $scope.selectAll = function() {
+            for (var i in $scope.forms) {
+                ($scope.radio)[$scope.forms[i]["_id"]] = true;
+            }
+        }
         
         $scope.clickDelete = function(e) {
             if (formFactory.getIdForm(parseInt(e.target.id.split("-")[2])).status == "offboard") {

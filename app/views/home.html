@@ -6,27 +6,27 @@
             <thead>
                 <th>
                     <td>标题</td>
-                    <td>时间</td>
+                    <td>最后修改时间</td>
                     <td>状态</td>
                     <td>操作<button type="button" class="btn btn-warning" ui-sref="app.edit" id="new-form1">新建问卷</button></td>
                 </th>
             </thead>
             
-            <tbody>
+            <tbody ng-init="init()">
                 <tr ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="form in forms">
-                    <td><input type="radio" id='radio{{form["_id"]}}'></td>
+                    <td><input type="radio" id='radio{{form["_id"]}}' ng-click="radio[form._id]=true"></td>
                     <td>{{form["name"]}}</td>
                     <td>{{form["date"]}}</td>
                     <td ng-bind-html="statusHTML[form['status']]|trust2Html"></td>
                     <td>
-                        <button type="button" class="btn btn-default" ui-sref="app.edit({id: form._id})" id='button-1-{{form["_id"]}}'>编辑</button>
-                        <button type="button" class="btn btn-default" ng-click="clickDelete($event)" id='button-2-{{form["_id"]}}'>删除</button>
-                        <button type="button" class="btn btn-default" ui-sref="app.{{jump[form['status']]}}({id: form._id})" id='button-3-{{form["_id"]}}'>{{text[form["status"]]}}</button>
+                        <button type="button" class="btn btn-default" ng-class="{warning: radio[form._id], disabled: !radio[form._id]}" ng-disabled="!radio[form._id]" ui-sref="app.edit({id: form._id})" id='button-1-{{form["_id"]}}'>编辑</button>
+                        <button type="button" class="btn btn-default" ng-class="{warning: radio[form._id], disabled: !radio[form._id]}" ng-disabled="!radio[form._id]" ng-click="clickDelete($event)" id='button-2-{{form["_id"]}}'>删除</button>
+                        <button type="button" class="btn btn-default" ng-class="{warning: radio[form._id], disabled: !radio[form._id]}" ng-disabled="!radio[form._id]" ui-sref="app.{{jump[form['status']]}}({id: form._id})" id='button-3-{{form["_id"]}}'>{{text[form["status"]]}}</button>
                     <td>
                 </tr>
                     
                 <tr>
-                    <input type="radio" id="select-all">
+                    <input type="radio" ng-click="selectAll()" id="select-all">
                     <p>全选</p>
                     <button type="button" class="btn btn-default" ng-click="clickDelete($event)" id='delete-all-button'>删除</button>
                 </tr>

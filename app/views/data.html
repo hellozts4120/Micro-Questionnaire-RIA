@@ -1,7 +1,7 @@
 
     <div class="container" id="data-wrapper" ng-init="init()">
         
-        <div>{{form.name}}</div>
+        <div id="view-title">{{form.name}}</div>
         <div class="container" id="data-container">
             <div id="data-container-inside">
                 <div id="question-container">
@@ -31,5 +31,5 @@
                 </div>   
             </div> 
         </div>
-        <button class="btn btn-warning" ui-sref="app">返回</button>
+        <button class="btn btn-warning" id="data-btn" ui-sref="app"><i class="fa fa-angle-left fa-1x" aria-hidden="true"></i>&nbsp;返回</button>
     </div>

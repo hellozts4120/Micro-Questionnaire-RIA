@@ -165,8 +165,8 @@ function calendar(selector, upperYear, lowerYear, type) {
         $(".currMonth").on("click", function(e){
             var currYear = document.getElementById("year").selectedOptions[0].value;
             var currMonth = document.getElementById("month").selectedOptions[0].value;
-            var currDate = e.target.innerHTML + '日';
-            document.getElementById("date-input").value = currYear + "" + currMonth + "" + currDate;
+            var currDate = e.target.innerHTML;
+            document.getElementById("date-input").value = parseInt(currYear) + "-" + (parseInt(currMonth) < 10 ? "0" : "") + parseInt(currMonth) + "-" + (parseInt(currDate) < 10 ? "0" : "") + parseInt(currDate);
             $(".calendarTitle,.select-date").remove();
             that.isShow = 0;
         })
