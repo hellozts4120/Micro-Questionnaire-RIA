@@ -7,18 +7,18 @@
                 <div id="question-container">
                     <div class="question" ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="question in form.questions track by $index">
                         <div class="question-title">
-                            Q{{form.questions.indexOf(question) + 1}}&nbsp;&nbsp;{{question.title}}
+                            Q{{form.questions.indexOf(question) + 1}}&nbsp;&nbsp;<span contenteditable="true" ng-model="question.title">{{question.title}}</span>
                         </div>
                         
                         <div class="select-options" ng-repeat="option in question.chose">
                             <input type="radio" name="question.title" ng-show="question.type == 1">
                             <input type="checkbox" ng-show="question.type == 2">
-                            {{option}}
+                            <span contenteditable="true" ng-model="option">{{option}}</span>
                         </div>
                         
                         <div class="select-options" ng-show="question.type == 3">
                             <textarea ng-show="question.type == 3"></textarea>
-                            <input type="checkbox" name="question.title" ng-show="question.type == 3" ng-checked="question.isMustAnswer">此题是否必填
+                            <input type="checkbox" name="question.title" ng-show="question.type == 3" ng-model="question.isMustAnswer">此题是否必填
                         </div>    
                         
                         <div class="question-operation" ng-show="isHover">
@@ -41,8 +41,12 @@
                 </div>    
             </div> 
         </div>
-        <button class="btn btn-default" ng-click="uploadForm()">保存问卷</button>
-        <button class="btn btn-warning">发布问卷</button>
+        <div id="input-div">
+            <img src="image/icon.png" id="icon">
+            <input type="text" placeholder="点击选择截止日期" id="date-input" ng-model="endDate">
+        </div>
+        <button class="btn btn-default" ng-click="uploadForm()" ui-sref="app">保存问卷</button>
+        <button class="btn btn-warning" ng-click="postForm()">发布问卷</button>
         
         <div class="modal" id="modal-cannot-edit" ng-show="modalShow">
             <div class="overlay-mask" id="overlay-mask-1" ui-sref="app"></div>

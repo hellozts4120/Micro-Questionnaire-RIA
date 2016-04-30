@@ -322,3 +322,17 @@ body {
 .progress-bar-danger {
     background-color: #d9534f;
 }
+
+#data-wrapper {
+    width: 80%;
+    height: auto;
+    margin: 50px auto;
+    background: white;
+}
+
+#data-container {
+    width: 80%;
+    height: auto;
+    margin: 20px auto;
+    border: 2px solid black;
+}

@@ -104,7 +104,12 @@ angular.module('questionnaireApp')
         }
         
         $scope.uploadForm = function() {
-            console.log($scope.form.name);
+            formFactory.uploadForm($scope.form);
+            alert("保存问卷成功！");
+        }
+        
+        $scope.postForm = function() {
+            // TO DO
         }
         
     }])
@@ -120,7 +125,6 @@ angular.module('questionnaireApp')
         $scope.jump = {"onboard": "data", "offboard": "view", "ended": "data"};
         
         $scope.clickDelete = function(e) {
-            console.log(e.target);
             if (formFactory.getIdForm(parseInt(e.target.id.split("-")[2])).status == "offboard") {
                 $scope.modalShow = true;
                 $scope.deleteForm = formFactory.getIdForm(parseInt(e.target.id.split("-")[2]));

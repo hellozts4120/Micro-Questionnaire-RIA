@@ -4,7 +4,8 @@ angular.module('questionnaireApp')
 
 .service('formFactory', function() {
 
-    var forms = [
+    if (!localStorage.getItem("forms")) {
+        var Forms = [
                     {
                         _id:0,
                         name:'问卷调查1',
@@ -136,12 +137,15 @@ angular.module('questionnaireApp')
                            
                         ]
                     }
-    ];
+        ];
+        localStorage.setItem('forms', JSON.stringify(Forms));
+    }
+    else var Forms = JSON.parse(localStorage.getItem('forms'));
 
 
     this.getForms = function(){
         
-        return forms;
+        return Forms;
         
     };
 
@@ -149,9 +153,9 @@ angular.module('questionnaireApp')
         
         var res = [];
         
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i]["status"] == type) {
-                res.push(forms[i]);
+        for (var i = 0; i < Forms.length; i++) {
+            if (Forms[i]["status"] == type) {
+                res.push(Forms[i]);
             }
         }
         
@@ -160,9 +164,9 @@ angular.module('questionnaireApp')
     
     this.getIdForm = function (id) {
         
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i]["_id"] == id) {
-                return forms[i];
+        for (var i = 0; i < Forms.length; i++) {
+            if (Forms[i]["_id"] == id) {
+                return Forms[i];
             }
         }
 
@@ -170,20 +174,37 @@ angular.module('questionnaireApp')
     
     this.deleteSpecificForm = function (obj) {
         
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i] === obj) {
-                forms.splice(i, 1);
+        for (var i = 0; i < Forms.length; i++) {
+            if (Forms[i] === obj) {
+                Forms.splice(i, 1);
                 break;
             }
         }
-
+        
+        localStorage.setItem('forms', JSON.stringify(Forms));
     };
+    
+    this.uploadForm = function (obj) {
+        var isFind = false;
+        for (var i = 0; i < Forms.length; i++) {
+            if (Forms[i]["_id"] === obj["_id"]) {
+                Forms[i] = obj;
+                isFind = true;
+                break;
+            }
+        }
+        if (!isFind) {
+            Forms.push(obj);
+        }
+        localStorage.setItem('forms', JSON.stringify(Forms));
+    }
 
     
 })
 
 .service('feedbackFactory', function() {
-    var feedbacks = [
+    if (!localStorage.getItem("feedbacks")) {
+        var Feedbacks = [
                     {
                         _id:0,
                         feedback: [
@@ -276,19 +297,22 @@ angular.module('questionnaireApp')
                            
                         ]
                     }
-    ];
+        ];
+        localStorage.setItem('forms', JSON.stringify(Forms));
+    }
+    else var Feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
     
     this.getFeedbacks = function (id) {
         
-        return feedbacks;
+        return Feedbacks;
 
     };
         
     this.getIdFeedback = function (id) {
         
-        for (var i = 0; i < feedbacks.length; i++) {
-            if (feedbacks[i]["_id"] == id) {
-                return feedbacks[i];
+        for (var i = 0; i < Feedbacks.length; i++) {
+            if (Feedbacks[i]["_id"] == id) {
+                return Feedbacks[i];
             }
         }
 
