@@ -122,6 +122,10 @@ angular.module('questionnaireApp')
         }
         
         $scope.uploadForm = function() {
+            if ($scope.form.questions.length == 0) {
+                alert("至少要有一个问题！");
+                return;
+            }
             $scope.changeTime();
             formFactory.uploadForm($scope.form);
             alert("保存问卷成功！");
