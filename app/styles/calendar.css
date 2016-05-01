@@ -1,0 +1,109 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "Microsoft Yahei";
+}
+
+body *{
+    transition: all 0.4s;
+}
+
+#wrapper {
+    width: 100%;
+    height: 50%; 
+}
+
+.container {
+    position: relative; 
+}
+
+#input-div {
+    width: 250px;
+    margin: 20px auto;
+}
+
+.period {
+    width: 250px;
+    margin: 20px auto;
+}
+
+.buttons {
+    width: 250px;
+    margin: 20px auto;
+}
+
+#confirm, #cancel {
+    width: 100px;
+    height: 20px;
+    margin: 0 10px;
+}
+
+#icon {
+    padding-top: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+#date-input {
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+}
+
+.period-input {
+    display: inline-block;
+    width: 250px;
+    height: 40px;
+}
+
+
+.calendarTitle {
+    margin: 0 auto;
+    width: 214px;
+}
+
+#month, #year {
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    margin: 0 17px;
+}
+
+.select-date {
+    font-family: "Microsoft Yahei";
+    width: 214px; 
+    margin: 0 auto;
+}
+
+.select-date th, .select-date td {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+}
+
+.select-date th {
+    color: blue;
+}
+
+.currMonth:hover {
+    border-radius: 5px;
+    background-color: #0966a8;
+    color: #FFFFFF;
+    cursor: pointer; 
+}
+
+.prevMonth, .nextMonth {
+    color: #CCCCCC; 
+}
+
+.currDate {
+    border-radius: 5px;
+    background-color: red; 
+}
+
+.periodDate {
+    background-color: green; 
+}
