@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="questionnaireApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Micro Questionnaire RIA</title>
+
+    <link href="styles/reset.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/calendar.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div ui-view="header"></div>
+    <div ui-view="content"></div>
+    <div ui-view="footer"></div>
+
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+      // 路径配置
+      require.config({
+        paths:{ 
+          'echarts' : 'http://echarts.baidu.com/build/echarts',
+          'echarts/chart/pie' : 'http://echarts.baidu.com/build/echarts'
+        }
+      });
+    </script>
+    <script src="scripts/calendar.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js"></script>
+    <script src="scripts/services.js"></script>
+</body>
+
+</html>

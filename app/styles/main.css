@@ -235,6 +235,12 @@ th {
     background: #fff;
 }
 
+#new-form {
+    width: 40%;
+    height: 100px;
+    margin: 0 30%;
+}
+
 #header-nav {
     background: orange;
 }
@@ -267,6 +273,15 @@ body {
 }
 .hide {
     display: none!important;
+}
+
+#home-bottom {
+    background: #fff;
+    padding: 10px 7px;
+}
+
+#home-bottom button {
+    margin: 0 10px;
 }
 
 .modal {
@@ -422,6 +437,12 @@ body {
     font-weight: bold;
 }
 
+.question-title input {
+    font-weight: bold;
+    border: 0;
+    font-size: 16px;
+}
+
 .question {
     padding: 0 20px;
     overflow: hidden;
@@ -442,6 +463,11 @@ body {
 
 .select-options {
     margin: 10px 20px;
+}
+
+.select-options input {
+    border: 0;
+    font-size: 14px;
 }
 
 #main-add {

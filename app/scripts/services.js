@@ -4,7 +4,7 @@ angular.module('questionnaireApp')
 
 .service('formFactory', function() {
 
-    //localStorage.clear();
+    localStorage.clear();
     if (!localStorage.getItem("forms")) {
         var Forms = [
                     {
@@ -317,6 +317,18 @@ angular.module('questionnaireApp')
             }
         }
 
+    };
+    
+    this.deleteSpecificFeedback = function (id) {
+        
+        for (var i = 0; i < Feedbacks.length; i++) {
+            if (Feedbacks[i]["_id"] === id) {
+                Feedbacks.splice(i, 1);
+                break;
+            }
+        }
+        
+        localStorage.setItem('feedbacks', JSON.stringify(Feedbacks));
     };
     
     this.uploadMockData = function (obj) {
