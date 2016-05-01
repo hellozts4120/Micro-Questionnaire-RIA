@@ -4,7 +4,7 @@ angular.module('questionnaireApp')
 
 .service('formFactory', function() {
 
-    localStorage.clear();
+    //localStorage.clear();
     if (!localStorage.getItem("forms")) {
         var Forms = [
                     {
