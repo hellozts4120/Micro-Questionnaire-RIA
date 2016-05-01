@@ -19,6 +19,10 @@
                             </div>
                         </div>
                         
+                        <div class="select-options" id="pie{{form.questions.indexOf(question)}}" ng-init="getPie(question)" ng-show="question.type == 2" style="height:400px">
+                            
+                        </div>
+                        
                         <div class="select-options" ng-show="question.type == 3">
                             <div class="progress">
                                 <div class="progress-bar progress-bar-warning" ng-style="{width: {{(question.useful) * 100}} + '%'}">

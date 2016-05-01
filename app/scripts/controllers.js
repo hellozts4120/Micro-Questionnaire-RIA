@@ -8,7 +8,7 @@ angular.module('questionnaireApp')
         };
     }])        
 
-    .controller('EditController', ['$scope', '$stateParams', 'formFactory', function($scope, $stateParams, formFactory) {
+    .controller('EditController', ['$scope', '$stateParams', 'formFactory', 'feedbackFactory', function($scope, $stateParams, formFactory, feedbackFactory) {
         $scope.isNew = false;
         $scope.forms = formFactory.getForms();
         $scope.form = {
@@ -103,16 +103,28 @@ angular.module('questionnaireApp')
             $scope.form.questions.splice(index, 1);
         }
         
-        $scope.uploadForm = function() {
+        $scope.changeTime = function() {
             var time1 = (new Date().toISOString().split("T"))[0];
             var time2 = (((new Date().toISOString().split("T"))[1]).split("."))[0];
             $scope.form.date = time1 + " " + time2;
+        }
+        
+        $scope.uploadForm = function() {
+            $scope.changeTime();
             formFactory.uploadForm($scope.form);
             alert("保存问卷成功！");
         }
         
         $scope.postForm = function() {
             $scope.endDate = $("#date-input").val();
+            if ($scope.endDate == "") {
+                alert("请选择截止日期！");
+                return;
+            }
+            if ($scope.form.questions.length == 0) {
+                alert("至少要有一个问题！");
+                return;
+            }
             var chose = $scope.endDate.split("-");
             var time = new Date();
             if (parseInt(chose[0]) < time.getFullYear() || (parseInt(chose[0]) == time.getFullYear() && parseInt(chose[1]) < time.getMonth() + 1) || (parseInt(chose[0]) == time.getFullYear() && parseInt(chose[1]) == time.getMonth() + 1 && parseInt(chose[2]) < time.getDate())) {
@@ -121,6 +133,8 @@ angular.module('questionnaireApp')
             }
             else {
                 $scope.form.status = "onboard";
+                $scope.changeTime();
+                feedbackFactory.uploadMockData($scope.form);
                 formFactory.uploadForm($scope.form);
                 alert("发布问卷成功！");
             }
@@ -186,6 +200,62 @@ angular.module('questionnaireApp')
                 }
                 else (($scope.form.questions)[i]).portion = (($scope.feedback.feedback)[i]).portion;
             }
+        }
+        
+        $scope.getPie = function(obj, id) {
+            if (obj.type != 2) return;
+            var data1 = [];
+            for (var i = 0; i < obj.chose.length; i++) {
+                data1.push({value: (obj.portion)[i], name: (obj.chose)[i]});
+            }
+            var option = {
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient : 'vertical',
+                        x : 'left',
+                        data: obj.chose
+                    },
+                       
+                    calculable : true,
+                    series : [
+                        {
+                            name:'统计结果',
+                            type:'pie',
+                            radius : [80, 120],//半径，默认为Min(width, height) / 2 - 50, 传数组实现环形图，[内半径，外半径]
+                            itemStyle :　{
+                                normal : {//默认样式
+                                    label : {
+                                        show : true
+                                    },
+                                    labelLine : {
+                                        show : false
+                                    }
+                                },
+                                emphasis : {//强调样式（悬浮时样式
+                                    label : {
+                                        show : true,
+                                        position : 'center',
+                                        textStyle : {
+                                            fontSize : '30',
+                                            fontWeight : 'bold'
+                                        }
+                                    }
+                                }
+                            },
+                            data:data1
+                        }
+                    ]
+            };
+            require([
+                'echarts',
+                'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+            ],function(ec) {
+                var myChart1 = ec.init(document.getElementById("pie" + $scope.form.questions.indexOf(obj)));
+                myChart1.setOption(option);
+            });
         }
         
     }])

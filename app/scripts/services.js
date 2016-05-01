@@ -4,6 +4,7 @@ angular.module('questionnaireApp')
 
 .service('formFactory', function() {
 
+    //localStorage.clear();
     if (!localStorage.getItem("forms")) {
         var Forms = [
                     {
@@ -210,7 +211,7 @@ angular.module('questionnaireApp')
                         feedback: [
                             {
                                 type: 1,
-                                portion: [0.32, 0.28, 0.30, 0.10]
+                                portion: [0.34, 0.26, 0.30, 0.10]
                             },
                             
                             {
@@ -241,7 +242,7 @@ angular.module('questionnaireApp')
                         feedback: [
                             {
                                 type: 1,
-                                portion: [0.28, 0.32, 0.10, 0.30]
+                                portion: [0.27, 0.33, 0.10, 0.30]
                             },
                             
                             {
@@ -256,7 +257,7 @@ angular.module('questionnaireApp')
                             
                             {
                                 type: 1,
-                                portion: [0.72, 0.28]
+                                portion: [0.75, 0.25]
                             },
                             
                             {
@@ -272,7 +273,7 @@ angular.module('questionnaireApp')
                         feedback: [
                             {
                                 type: 1,
-                                portion: [0.10, 0.32, 0.28, 0.30]
+                                portion: [0.10, 0.32, 0.26, 0.32]
                             },
                             
                             {
@@ -287,7 +288,7 @@ angular.module('questionnaireApp')
                             
                             {
                                 type: 1,
-                                portion: [0.28, 0.72]
+                                portion: [0.30, 0.70]
                             },
                             
                             {
@@ -317,5 +318,40 @@ angular.module('questionnaireApp')
         }
 
     };
+    
+    this.uploadMockData = function (obj) {
+        var mock = {};
+        mock._id = obj._id;
+        mock.feedback = [];
+        for (var i = 0; i < obj.questions.length; i++) {
+            switch(((obj.questions)[i]).type) {
+                case 1:
+                    var data1 = [];
+                    var sum = 0;
+                    for (var j = 0; j < (obj.questions[i]).chose.length - 1; j ++) {
+                        var cur = parseFloat(((Math.random()) * 0.3).toFixed(2));
+                        sum += parseFloat(cur);
+                        data1.push(cur);
+                    }
+                    data1.push((1.0 - sum));
+                    mock.feedback.push({type: 1, portion: data1});
+                    break;
+                case 2:
+                    var data1 = [];
+                    for (var j = 0; j < (obj.questions[i]).chose.length; j++) {
+                        data1.push(parseFloat((Math.random()).toFixed(2)));
+                    }
+                    mock.feedback.push({type: 2, portion: data1});
+                    console.log(data1);
+                    break;
+                case 3:
+                    var cur = parseFloat((Math.random()).toFixed(2));
+                    mock.feedback.push({type: 3, useful: cur});
+                    break;
+            }
+        }
+        Feedbacks.push(mock);
+        localStorage.setItem('feedbacks', JSON.stringify(Feedbacks));
+    }
 
 })
