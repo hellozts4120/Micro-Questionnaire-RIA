@@ -1,0 +1,30 @@
+
+    <div class="container" id="view-wrapper">
+        
+        <div id="view-title">{{form.name}}</div>
+        <div class="container" id="view-container">
+            <div id="view-container-inside">
+                <div id="question-container">
+                    <div class="question" ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="question in form.questions track by $index">
+                        <div class="question-title">
+                            Q{{form.questions.indexOf(question) + 1}}&nbsp;&nbsp;{{question.title}}
+                            <span id="isMust1" ng-show="question.type == 3">此题{{question.isMustAnswer ? "必填" : "非必填"}}</span>
+                        </div>
+                        
+                        <div class="select-options" ng-repeat="option in question.chose">
+                            <input type="radio" name="question.title" ng-show="question.type == 1">
+                            <input type="checkbox" ng-show="question.type == 2">
+                            {{option}}
+                        </div>
+                        
+                        <div class="select-options" ng-show="question.type == 3">
+                            <textarea ng-show="question.type == 3"></textarea>
+                        </div>  
+                        
+                    </div>
+                </div>   
+            </div> 
+        </div>
+        <button class="btn btn-default" id="edit-btn1" ui-sref="app">返回上层</button>
+        <button class="btn btn-warning" id="edit-btn2">提交问卷</button>
+    </div>

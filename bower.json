@@ -1,0 +1,27 @@
+{
+  "name": "microQuestionnaire",
+  "version": "1.0.0",
+  "description": "Final project of Baidu-IFE 2016 spring",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "microQuestionnaire",
+    "RIA"
+  ],
+  "authors": [
+    "Tianshu Zhou"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.4.0",
+    "angular": "~1.4.7"
+  }
+}
