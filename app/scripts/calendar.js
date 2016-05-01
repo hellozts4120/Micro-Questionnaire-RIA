@@ -346,19 +346,3 @@ function calendar(selector, upperYear, lowerYear, type) {
         }
     }
 }
-
-
-
-$(window).on("load", function() {
-    var cal = new calendar("#input-div", 20, 20, 0);
-	$("#date-input,#icon").on("click",function() {
-		if (!cal.isShow) {
-            cal.isShow = 1;
-            cal.initDOM();
-        }
-        else {
-            cal.hideDOM();
-            cal.isShow = 0;
-        }
-	});
-});

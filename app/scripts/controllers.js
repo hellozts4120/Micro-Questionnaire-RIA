@@ -20,6 +20,7 @@ angular.module('questionnaireApp')
         };
         
         $scope.init = function() {
+            $scope.cal = new calendar("#input-div", 20, 20, 0);
             if ($stateParams.id == "") {
                 $scope.isNew = true;
             }
@@ -109,6 +110,17 @@ angular.module('questionnaireApp')
             $scope.form.date = time1 + " " + time2;
         }
         
+        $scope.showCalendar = function() {
+            if (!$scope.cal.isShow) {
+                $scope.cal.isShow = 1;
+                $scope.cal.initDOM();
+            }
+            else {
+                $scope.cal.hideDOM();
+                $scope.cal.isShow = 0;
+            }
+        }
+        
         $scope.uploadForm = function() {
             $scope.changeTime();
             formFactory.uploadForm($scope.form);
@@ -143,10 +155,11 @@ angular.module('questionnaireApp')
     }])
 
 
-    .controller('IndexController', ['$scope', 'formFactory', function($scope, formFactory){
+    .controller('IndexController', ['$scope', 'formFactory', 'feedbackFactory', function($scope, formFactory, feedbackFactory){
         $scope.forms = formFactory.getForms();
         $scope.isShow = formFactory.getForms().length > 0;
         $scope.modalShow = false;
+        $scope.deleteAllShow = false;
         $scope.type = ["onboard", "offboard", "ended"];
         $scope.statusHTML = {"onboard": "<p style='color: #40FF00'>发布中</p>", "offboard": "<p>未发布</p>", "ended": "<p style='color: red'>已结束</p>"};
         $scope.text = {"onboard": "查看数据", "offboard": "查看问卷", "ended": "查看数据"};
@@ -161,6 +174,7 @@ angular.module('questionnaireApp')
         }
         
         $scope.selectAll = function() {
+            $scope.isAll = true;
             for (var i in $scope.forms) {
                 ($scope.radio)[$scope.forms[i]["_id"]] = true;
             }
@@ -182,8 +196,23 @@ angular.module('questionnaireApp')
             $scope.modal2Show = false;
         }
         
+        $scope.hideDeleteAll = function() {
+            $scope.deleteAllShow = false;
+        }
+        
+        $scope.deleteAllCheck = function() {
+            for (var i = 0; i < $scope.forms.length; i++) {
+                if (($scope.forms)[i]["status"] == "offboard") {
+                    formFactory.deleteSpecificForm(($scope.forms)[i]);
+                    feedbackFactory.deleteSpecificFeedback(($scope.forms)[i]["_id"]);
+                }
+            }
+            $scope.deleteAllShow = false;
+        }
+        
         $scope.deleteCheck = function() {
             formFactory.deleteSpecificForm($scope.deleteForm);
+            feedbackFactory.deleteSpecificFeedback($scope.deleteForm._id);
             $scope.hideModal();
         }
 
