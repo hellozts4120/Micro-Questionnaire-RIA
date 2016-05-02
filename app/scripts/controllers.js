@@ -121,7 +121,28 @@ angular.module('questionnaireApp')
             }
         }
         
+        $scope.addChose = function(obj) {
+            for (var i in $scope.form.questions) {
+                if (($scope.form.questions)[i] == obj) {
+                    var newChose = "新选项";
+                    ($scope.form.questions)[i].chose.push(newChose);
+                }
+            }
+        }
+        
+        $scope.delChose = function(obj, id) {
+            for (var i in $scope.form.questions) {
+                if (($scope.form.questions)[i] == obj) {
+                    ($scope.form.questions)[i].chose.splice(id, 1);
+                }
+            }
+        }
+        
         $scope.uploadForm = function() {
+            if ($scope.form.questions.length == 0) {
+                alert("至少要有一个问题！");
+                return;
+            }
             $scope.changeTime();
             formFactory.uploadForm($scope.form);
             alert("保存问卷成功！");
