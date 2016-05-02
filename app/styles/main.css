@@ -470,6 +470,17 @@ body {
     font-size: 14px;
 }
 
+.op-chose {
+    float: right;
+    margin: 0 5px;
+}
+
+.op-chose:hover {
+    background: red;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
 #main-add {
     border: 1px solid #D8D8D8;
 }
