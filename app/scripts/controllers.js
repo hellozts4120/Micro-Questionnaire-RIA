@@ -91,8 +91,9 @@ angular.module('questionnaireApp')
                 return;
             }
             var index = $scope.form.questions.indexOf(obj);
-            var temp = obj;
+            var temp = JSON.parse(JSON.stringify(obj));
             $scope.form.questions.splice(index + 1, 0, temp);
+            console.log($scope.form.questions);
         }
         
         $scope.deleteQuestion = function(obj) {
@@ -121,11 +122,12 @@ angular.module('questionnaireApp')
             }
         }
         
-        $scope.addChose = function(obj) {
+        $scope.addChose = function(obj, id) {
             for (var i in $scope.form.questions) {
-                if (($scope.form.questions)[i] == obj) {
+                if (($scope.form.questions)[i] == obj && i == id) {
                     var newChose = "新选项";
                     ($scope.form.questions)[i].chose.push(newChose);
+                    break;
                 }
             }
         }
@@ -134,6 +136,7 @@ angular.module('questionnaireApp')
             for (var i in $scope.form.questions) {
                 if (($scope.form.questions)[i] == obj) {
                     ($scope.form.questions)[i].chose.splice(id, 1);
+                    break;
                 }
             }
         }

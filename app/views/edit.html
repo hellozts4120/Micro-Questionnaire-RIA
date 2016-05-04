@@ -8,7 +8,7 @@
                     <div class="question" ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="question in form.questions track by $index">
                         <div class="question-title">
                             Q{{form.questions.indexOf(question) + 1}}&nbsp;&nbsp;<input ng-class="{pink: isHover}" type="text" ng-model="question.title">
-                            <span class="op-chose" ng-click="addChose(question)" ng-show="question.type != 3">新增选项</span>
+                            <span class="op-chose" ng-click="addChose(question, $index)" ng-show="question.type != 3">新增选项</span>
                             <span class="op-chose" ng-click="sortChose()" ng-show="question.type != 3">选项排序</span>
                             <span class="isMust" ng-show="question.type == 3"><input type="checkbox" name="question.title" ng-model="question.isMustAnswer">此题是否必填</span>
                         </div>
