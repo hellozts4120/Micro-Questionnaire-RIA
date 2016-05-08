@@ -14,7 +14,7 @@
             
             <tbody ng-init="init()">
                 <tr ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="form in forms track by $index">
-                    <td><input type="radio" id='radio{{form["_id"]}}' ng-click="radio[form._id]=true"></td>
+                    <td><input type="checkbox" id='radio{{form["_id"]}}' ng-model="radio[form._id]"></td>
                     <td>{{form["name"]}}</td>
                     <td>{{form["date"]}}</td>
                     <td ng-bind-html="statusHTML[form['status']]|trust2Html"></td>
@@ -29,7 +29,7 @@
         </table>
         
         <div id="home-bottom" ng-show="isShow">
-            <input type="radio" ng-click="selectAll()" id="select-all">
+            <input type="checkbox" ng-click="selectAll()" id="select-all">
             <span>全选</span>
             <button type="button" class="btn btn-default" ng-class="{warning: isAll, disabled: !isAll}" ng-disabled="!isAll" ng-click="deleteAllShow=true" id='delete-all-button'>删除所有未发布问卷</button>
         </div>

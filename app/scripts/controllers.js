@@ -190,9 +190,9 @@ angular.module('questionnaireApp')
         }
         
         $scope.selectAll = function() {
-            $scope.isAll = true;
+            $scope.isAll = !$scope.isAll;
             for (var i in $scope.forms) {
-                ($scope.radio)[$scope.forms[i]["_id"]] = true;
+                ($scope.radio)[$scope.forms[i]["_id"]] = $scope.isAll;
             }
         }
         
