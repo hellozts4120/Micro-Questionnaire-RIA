@@ -21,7 +21,7 @@
                     <td>
                         <button type="button" class="btn btn-default" ng-class="{warning: radio[form._id], disabled: !radio[form._id]}" ng-disabled="!radio[form._id]" ui-sref="app.edit({id: form._id})" id='button-1-{{form["_id"]}}'>编辑</button>
                         <button type="button" class="btn btn-default" ng-class="{warning: radio[form._id], disabled: !radio[form._id]}" ng-disabled="!radio[form._id]" ng-click="clickDelete($event)" id='button-2-{{form["_id"]}}'>删除</button>
-                        <button type="button" class="btn btn-default" ng-class="{warning: radio[form._id], disabled: !radio[form._id]}" ng-disabled="!radio[form._id]" ui-sref="app.{{jump[form['status']]}}({id: form._id})" id='button-3-{{form["_id"]}}'>{{text[form["status"]]}}</button>
+                        <button type="button" class="btn btn-default" ng-class="{warning: radio[form._id], disabled: !radio[form._id]}" ng-disabled="!radio[form._id]" ui-sref="app.{{jump[form['status']]}}({id: form._id})" id='button-3-{{form["_id"]}}' ng-bind-html="form['status']|statusFilter"></button>
                     <td>
                 </tr>
                     
