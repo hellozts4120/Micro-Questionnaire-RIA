@@ -12,10 +12,43 @@ var callback = function(req, res, err, data) {
 
 module.exports = {
     getForms: function(req, res) {
-        
-    }
+        Form.getAll( function(err, data){
+            callback(req, res, err, data);
+        });
+    },
     
-    uploadForm: function(req, res) {
-        
+    deleteSpecificForm: function(req, res) {
+        var id = req.body.id;
+        Form.remove(id, function(err, data){
+            callback(req, res, err, data);
+        });
+    },
+    
+    getSpecificForm: function(req, res) {
+        var status = req.body.status;
+        Form.getStatus(status, function(err, data){
+            callback(req, res, err, data);
+        });
+    },
+    
+    getIdForm: function(req, res) {
+        var id = req.body.id;
+        Form.getId(id, function(err, data){
+            callback(req, res, err, data);
+        });
+    },
+    
+    saveForm: function(req, res) {
+        var obj = req.body.obj;
+        Form.save(obj, function(err, data){
+            callback(req, res, err, data);
+        });
+    },
+    
+    updateForm: function(req, res) {
+        var obj = req.body.obj;
+        Form.update(obj, function(err, data){
+            callback(req, res, err, data);
+        });
     }
 }

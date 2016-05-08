@@ -21,10 +21,11 @@ app.get('/', function(req, res) {
 
 var apiRouter = express.Router();
 apiRouter.post('/getForms', formController.getForms);
+apiRouter.post('/deleteSpecificForm', formController.deleteSpecificForm);
 apiRouter.post('/getSpecificForm', formController.getSpecificForm);
 apiRouter.post('/getIdForm', formController.getIdForm);
-apiRouter.post('/deleteSpecificForm', formController.deleteSpecificForm);
-apiRouter.post('/uploadForm', formController.uploadForm);
+apiRouter.post('/saveForm', formController.saveForm);
+apiRouter.post('/updateForm', formController.updateForm);
 apiRouter.post('/getFeedbacks', feedbackController.getFeedbacks);
 apiRouter.post('/getIdFeedback', feedbackController.getIdFeedback);
 apiRouter.post('/deleteSpecificFeedback', feedbackController.deleteSpecificFeedback);
@@ -33,7 +34,7 @@ apiRouter.post('/uploadMockData', feedbackController.uploadMockData);
 app.use('/api', apiRouter);
 
 app.use(function(req, res, next) {
-	res.status(404).sendFile(_rootDir + '/src/404.html');
+	res.status(404).sendFile(_rootDir + '/app/404.html');
 });
 
 app.use(function(err, req, res, next) {

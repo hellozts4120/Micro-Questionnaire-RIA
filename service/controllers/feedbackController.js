@@ -12,10 +12,29 @@ var callback = function(req, res, err, data) {
 
 module.exports = {
     getFeedbacks: function(req, res) {
-        
-    }
+        Feedback.getAll( function(err, data){
+            callback(req, res, err, data);
+        });
+    },
     
-    uploadFeedback: function(req, res) {
-        
+    getIdFeedback: function(req, res) {
+        var id = req.body.id;
+        Feedback.getId(id, function(err, data){
+            callback(req, res, err, data);
+        });
+    },
+    
+    deleteSpecificFeedback: function(req, res) {
+        var id = req.body.id;
+        Feedback.remove(id, function(err, data){
+            callback(req, res, err, data);
+        });
+    },
+    
+    uploadMockData: function(req, res) {
+        var obj = req.body.obj;
+        Feedback.save(obj, function(err, data){
+            callback(req, res, err, data);
+        });
     }
 }
