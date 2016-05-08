@@ -2,12 +2,6 @@
 
 angular.module('questionnaireApp')
 
-    .filter('trust2Html', ['$sce',function($sce) {  
-        return function(val) {  
-            return $sce.trustAsHtml(val);   
-        };
-    }])        
-
     .controller('EditController', ['$scope', '$stateParams', 'formFactory', 'feedbackFactory', function($scope, $stateParams, formFactory, feedbackFactory) {
         $scope.isNew = false;
         $scope.forms = formFactory.getForms();
@@ -122,50 +116,49 @@ angular.module('questionnaireApp')
             }
         }
         
-        $scope.addChose = function(obj, id) {
-            for (var i in $scope.form.questions) {
-                if (($scope.form.questions)[i] == obj && i == id) {
-                    var newChose = "新选项";
-                    ($scope.form.questions)[i].chose.push(newChose);
-                    break;
-                }
-            }
+        $scope.delQuestion = function(id) {
+            $scope.form.questions.splice(id, 1);
+        }
+        
+        $scope.addChose = function(obj) {
+            var newChose = "新选项";
+            obj.chose.push(newChose);
         }
         
         $scope.delChose = function(obj, id) {
-            for (var i in $scope.form.questions) {
-                if (($scope.form.questions)[i] == obj) {
-                    ($scope.form.questions)[i].chose.splice(id, 1);
-                    break;
-                }
-            }
+            obj.chose.splice(id, 1);
+        }
+        
+        $scope.sortChose = function(obj) {
+            obj.chose.sort(function(a,b) { return a.localeCompare(b) });
         }
         
         $scope.uploadForm = function() {
             if ($scope.form.questions.length == 0) {
                 alert("至少要有一个问题！");
-                return;
+                return false;
             }
             $scope.changeTime();
             formFactory.uploadForm($scope.form);
             alert("保存问卷成功！");
+            return true;
         }
         
         $scope.postForm = function() {
             $scope.endDate = $("#date-input").val();
             if ($scope.endDate == "") {
                 alert("请选择截止日期！");
-                return;
+                return false;
             }
             if ($scope.form.questions.length == 0) {
                 alert("至少要有一个问题！");
-                return;
+                return false;
             }
             var chose = $scope.endDate.split("-");
             var time = new Date();
             if (parseInt(chose[0]) < time.getFullYear() || (parseInt(chose[0]) == time.getFullYear() && parseInt(chose[1]) < time.getMonth() + 1) || (parseInt(chose[0]) == time.getFullYear() && parseInt(chose[1]) == time.getMonth() + 1 && parseInt(chose[2]) < time.getDate())) {
                 alert("选择的截止时间不得早于当前时间！");
-                return;
+                return false;
             }
             else {
                 $scope.form.status = "onboard";
@@ -173,11 +166,11 @@ angular.module('questionnaireApp')
                 feedbackFactory.uploadMockData($scope.form);
                 formFactory.uploadForm($scope.form);
                 alert("发布问卷成功！");
+                return true;
             }
         }
         
     }])
-
 
     .controller('IndexController', ['$scope', 'formFactory', 'feedbackFactory', function($scope, formFactory, feedbackFactory){
         $scope.forms = formFactory.getForms();
@@ -186,7 +179,6 @@ angular.module('questionnaireApp')
         $scope.deleteAllShow = false;
         $scope.type = ["onboard", "offboard", "ended"];
         $scope.statusHTML = {"onboard": "<p style='color: #40FF00'>发布中</p>", "offboard": "<p>未发布</p>", "ended": "<p style='color: red'>已结束</p>"};
-        $scope.text = {"onboard": "查看数据", "offboard": "查看问卷", "ended": "查看数据"};
         $scope.jump = {"onboard": "data", "offboard": "view", "ended": "data"};
         
         

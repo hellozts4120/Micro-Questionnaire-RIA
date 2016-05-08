@@ -8,8 +8,9 @@
                     <div class="question" ng-class="{pink: isHover}" ng-mouseenter="isHover=true" ng-mouseleave="isHover=false" ng-repeat="question in form.questions track by $index">
                         <div class="question-title">
                             Q{{form.questions.indexOf(question) + 1}}&nbsp;&nbsp;<input ng-class="{pink: isHover}" type="text" ng-model="question.title">
+                            <span class="op-chose" ng-click="delQuestion($index)"><i class="fa fa-times" ng-show="isHover" aria-hidden="true"></i></span>
                             <span class="op-chose" ng-click="addChose(question, $index)" ng-show="question.type != 3">新增选项</span>
-                            <span class="op-chose" ng-click="sortChose()" ng-show="question.type != 3">选项排序</span>
+                            <span class="op-chose" ng-click="sortChose(question)" ng-show="question.type != 3">选项排序</span>
                             <span class="isMust" ng-show="question.type == 3"><input type="checkbox" name="question.title" ng-model="question.isMustAnswer">此题是否必填</span>
                         </div>
                         
@@ -49,8 +50,8 @@
             <i class="fa fa-calendar fa-2x" id="icon" aria-hidden="true"></i>
             <input type="text" placeholder="点击选择截止日期" ng-click="showCalendar()" id="date-input" ng-model="endDate">
         </div>
-        <button class="btn btn-default" id="edit-btn1" ng-click="uploadForm()" ui-sref="app">保存问卷</button>
-        <button class="btn btn-warning" id="edit-btn2" ng-click="postForm()" ui-sref="app">发布问卷</button>
+        <button class="btn btn-default" id="edit-btn1" eat-click-if="!uploadForm()" ui-sref="app">保存问卷</button>
+        <button class="btn btn-warning" id="edit-btn2" eat-click-if="!postForm()"  ui-sref="app">发布问卷</button>
         
         <div class="modal" id="modal-cannot-edit" ng-show="modalShow">
             <div class="overlay-mask" id="overlay-mask-1" ui-sref="app"></div>
