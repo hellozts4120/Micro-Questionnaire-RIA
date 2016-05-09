@@ -143,6 +143,12 @@ th {
   }
 }
 
+@media (max-width: 768px) {
+  .navbar-nav {
+    display: none;
+  }
+}
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -567,6 +573,13 @@ body {
 
 #isMust1 {
     float: right;
+}
+
+@media (max-width: 768px) {
+  #edit-btn1, #edit-btn2 {
+    width: 40%;
+    margin-left: 30%;
+  }
 }
 
 /*  CSS for data page  */
