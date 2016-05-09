@@ -40,6 +40,7 @@ module.exports = {
     
     saveForm: function(req, res) {
         var obj = req.body.obj;
+        console.log(obj);
         Form.save(obj, function(err, data){
             callback(req, res, err, data);
         });

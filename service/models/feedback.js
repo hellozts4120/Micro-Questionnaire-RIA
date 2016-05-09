@@ -1,9 +1,8 @@
 var mongodb = require('./mongodb');
-var Feedback = require('./feedback');
 var Schema = mongodb.mongoose.Schema;
 
 var FeedbackSchema = new Schema({
-    _id: String,
+    _id: Number,
     feedback: Array
 });
 
@@ -45,3 +44,5 @@ FeedbackOperation.prototype.save = function(obj, callback) {
         callback(err, null);
     });
 }
+
+module.exports = new FeedbackOperation();

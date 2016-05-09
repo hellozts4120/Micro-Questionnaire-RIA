@@ -1,13 +1,19 @@
 var mongodb = require('./mongodb');
-var Feedback = require('./feedback');
 var Schema = mongodb.mongoose.Schema;
 
+var questionSchema = new Schema({
+    type: {type: Number},
+    title: {type: String},
+    chose: {type: Array},
+    isSortable: {type: Boolean}
+})
+
 var FormSchema = new Schema({
-    _id: String,
-    name: String,
-    status: String,
-    date: String,
-    questions: Array
+    _id: {type: Number},
+    name: {type: String},
+    status: {type: String},
+    date: {type: String},
+    questions: [questionSchema]
 });
 
 var Form = mongodb.mongoose.model("Form", FormSchema);
