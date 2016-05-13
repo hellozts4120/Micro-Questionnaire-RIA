@@ -417,6 +417,11 @@ body {
     float: right;
 }
 
+#sortTable:hover {
+    background: #F8E0E0;
+    cursor: pointer;
+}
+
 /*  CSS for edit page */
 
 #edit-container {
