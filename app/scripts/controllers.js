@@ -175,6 +175,7 @@ angular.module('questionnaireApp')
     .controller('IndexController', ['$scope', 'formFactory', 'feedbackFactory', function($scope, formFactory, feedbackFactory){
         $scope.forms = formFactory.getForms();
         $scope.isShow = formFactory.getForms().length > 0;
+        $scope.tableSort = false;
         $scope.modalShow = false;
         $scope.deleteAllShow = false;
         $scope.type = ["onboard", "offboard", "ended"];
@@ -187,6 +188,11 @@ angular.module('questionnaireApp')
             for (var i in $scope.forms) {
                 ($scope.radio)[$scope.forms[i]["_id"]] = false;
             }
+        }
+        
+        $scope.sortTable = function() {
+            $scope.tableSort = !$scope.tableSort;
+            $scope.forms.sort($scope.tableSort ? function(a,b) { return (a.date).localeCompare(b.date) } : function(a,b) { return (b.date).localeCompare(a.date) });
         }
         
         $scope.selectAll = function() {
